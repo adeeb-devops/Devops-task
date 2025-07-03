@@ -1,8 +1,0 @@
-node_modules/
-.cache/
-dist/
-.DS_Store
-coverage/
-.vscode/pnpm-lock.yaml
-.env*
-.env
