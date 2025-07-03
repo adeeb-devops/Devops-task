@@ -1,0 +1,14 @@
+version: '3'
+services:
+  frontend:
+    container_name: mines-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    networks:
+      - mines-network
+    restart: always
+
+networks:
+  mines-network:
+    external: true

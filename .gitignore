@@ -1,0 +1,10 @@
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+
+*.env
+
+*/node_modules
+*/build
+*/dist

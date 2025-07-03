@@ -1,0 +1,1038 @@
+@font-face {
+  font-family: "montserrat";
+  src: url("./pages/main-app/assets/fonts/Montserrat-Bold.ttf") format("truetype");
+}
+
+.user-app {
+  font-family: "montserrat";
+  font-size: 16px;
+  background: #1c1f32;
+  margin: 0;
+  padding: 0;
+  overflow: none;
+}
+
+canvas {
+  border-radius: 0.5rem;
+}
+
+#game-division {
+  max-height: calc(var(--vh, 1vh) * 100);
+}
+
+:root {
+  --vh: 1vh;
+}
+
+button:disabled,
+input:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  /* opacity: 0.6; */
+}
+
+button:disabled:hover,
+input:disabled:hover {
+  background-color: inherit;
+  color: inherit;
+}
+
+.main-container {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+  /* max-height: calc(100vh - 80px); */
+  /* overflow-y: auto; */
+}
+
+.sidebar {
+  display: block;
+  /* width: 25%;0 */
+  width: 478px;
+}
+
+.main-content {
+  display: block;
+  max-height: 100vh;
+  height: 100%;
+  /* width: unset !important; */
+  width: auto;
+  flex-grow: 1;
+}
+
+.main-content canvas {
+  margin: 0 !important;
+}
+
+.right-sidebar {
+  display: block;
+  /* width: 25%; */
+  width: 478px;
+}
+
+.betting-menu-mobile {
+  display: none;
+}
+
+.betting-menu-title {
+  background-color: #1c1f32;
+  padding: 5px 10px;
+  text-align: center;
+  width: fit-content;
+  min-width: 130px;
+  margin: auto;
+  border-radius: 0.2rem;
+}
+
+.betting-menu {
+  width: 478px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #31354c;
+  border-radius: 0.5rem;
+  /* max-height: calc(100vh - 80px);
+  overflow-y: auto; */
+}
+
+.game-mode-toggle {
+  display: none;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #1c1f32;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+}
+
+.input-row {
+  height: 47px;
+  background-color: #1c1f32;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.2rem;
+}
+
+.input-row button {
+  width: 22px;
+  height: 22px;
+  font-size: 25px;
+  padding: 0;
+  background: white;
+  color: #1c1f32;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-row span {
+  padding: 0 1rem;
+  color: #fff;
+}
+
+.bet-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bet-controls input {
+  padding: 0.5rem;
+  width: 100%;
+  background: #1c1f32;
+  color: #fff;
+  border: none;
+}
+
+.bet-controls button {
+  padding: 0.5rem;
+  background: #1c1f32;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.2rem;
+}
+
+.bet-button {
+  display: block;
+  width: 105px;
+  height: 105px;
+  padding: 1rem;
+  margin: auto;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 50%;
+  border: 1px solid #8594fa;
+  cursor: pointer;
+  text-align: center;
+}
+
+.bet-button.stopAutoBet {
+  font-size: 16px;
+  background-color: #dd090d;
+  border: 1px solid #750909;
+}
+
+.bet-button.stopAutoBet:hover {
+  border: 1px solid #8594fa;
+}
+
+.bet-button.cashout {
+  display: block;
+  width: 105px;
+  height: 105px;
+  padding: 1rem;
+  margin: auto;
+  background: #00a019;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 50%;
+  border: 1px solid white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.bet-button.cashout:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bet-button.cashout:hover {
+  background: #1bc139;
+}
+
+.bet-button:hover {
+  background: #0056b3;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  max-width: 90%;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.popup-content {
+  border-radius: 5px;
+  pointer-events: auto;
+  text-align: center;
+}
+
+.multiplier-popup-content {
+  background: #1c1f32;
+  padding: 20px;
+  border: 3px solid #585858;
+  border-radius: 5px;
+  pointer-events: auto;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.multiplier-popup-content h2 {
+  margin-bottom: 10px;
+  color: #00ff2f;
+  align-items: center;
+  text-align: center;
+}
+
+.multiplier-popup-content p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: white;
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  .betting-menu {
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 40%;
+  }
+
+  .right-sidebar {
+    width: 40%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .betting-menu {
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 25%;
+  }
+
+  .right-sidebar {
+    width: 25%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .betting-menu {
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 25%;
+  }
+
+  .right-sidebar {
+    width: 25%;
+  }
+}
+
+@media (max-width: 766px) {
+  .betting-menu {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .betting-menu-title {
+    display: none;
+  }
+
+  .main-container {
+    display: block;
+    padding-top: 0px;
+  }
+
+  .right-sidebar,
+  .sidebar {
+    display: none;
+  }
+
+  .betting-menu-mobile {
+    display: block;
+    margin-top: 20px;
+  }
+
+  .game-mode-toggle {
+    display: flex !important;
+    justify-content: space-between;
+    background-color: #1c1f32;
+    margin-bottom: 1rem;
+    padding: 8px;
+    border-radius: 0.2rem;
+  }
+
+  .game-mode-toggle button {
+    padding: 5px 10px;
+    max-width: calc(100% / 2);
+    width: 100%;
+    background: #1c1f32;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .game-mode-toggle button.active {
+    background: #31354c;
+  }
+
+  .popup {
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    max-width: 90%;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .grid-mines-selection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .grid-mines-selection .input-group {
+    width: 100%;
+  }
+
+  .bet-button {
+    font-size: 11px;
+    width: 76px;
+    height: 76px;
+  }
+
+  .bet-button.cashout {
+    font-size: 11px;
+    width: 76px;
+    height: 76px;
+  }
+
+  .bet-button.stopAutoBet {
+    font-size: 11px;
+  }
+}
+
+/* Header CSS Start here */
+.header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 20px;
+  margin-top: 20px;
+}
+
+.header .header-left {
+  display: flex;
+  align-items: center;
+  /* gap: 10%; */
+}
+
+.header .header-left .gameId {
+  white-space: nowrap;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.header .header-left .backBtn img {
+  width: 18px;
+  height: 34px;
+}
+
+.header-right {
+  min-width: 228px;
+  display: flex;
+  gap: 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-right .balance {
+  min-width: 146px;
+  height: 43px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #141a2a;
+  border-radius: 9px;
+  padding-inline: 5px;
+  border: 2px solid #282840;
+}
+
+.header-right .balance p {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.header-right .balance img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+.header-right .ham-icon {
+  cursor: pointer;
+  border: 2px solid #282840;
+  border-radius: 100%;
+  background-color: #141a2a;
+}
+
+.header-right .ham-icon img {
+  padding-inline: 12px;
+  padding-block: 17px;
+}
+
+/* ///////////////////////////// */
+.hamburger-menu {
+  position: fixed;
+  right: 20px;
+  top: 12%;
+  width: 549px;
+  height: 84%;
+  overflow-y: scroll;
+  background-color: #23263a;
+  color: #fff;
+  border: 2px solid #3c4057;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.hamburger-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-left: 1rem;
+}
+
+.profile-image {
+  width: 117px;
+  height: 117px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.profile-name {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.hamburger-menu .menu-items {
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.hamburger-menu .menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 2px solid rgb(255, 255, 255, 0.5);
+  padding-inline: 1rem;
+  padding-block: 0.95rem;
+  /* border-radius: 0.375rem; */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.hamburger-menu .menu-item .menu-img-text .menu-label {
+  /* font-size: 30px; */
+  color: #fff;
+  font-weight: 500;
+}
+
+.hamburger-menu .menu-item:nth-child(2) {
+  border-top: 2px solid rgb(255, 255, 255, 0.5);
+}
+
+.hamburger-menu .menu-item:last-child {
+  border-bottom: none;
+}
+
+.hamburger-menu .menu-item .menu-img-text {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger-menu .menu-item:hover {
+  background-color: #374151;
+}
+
+.menu-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+.menu-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.submenu {
+  margin-top: 0.75rem;
+  padding-left: 2.5rem;
+}
+
+.submenu .submenu-container {
+  width: 70%;
+}
+
+.submenu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-left: 10%;
+}
+
+.submenu-icon {
+  margin-right: 0.75rem;
+}
+
+.desktop-layout {
+  display: flex;
+}
+
+.mobile-layout {
+  display: none;
+}
+
+@media screen and (max-width: 576px) {
+  .desktop-layout {
+    display: none;
+  }
+
+  .mobile-layout {
+    display: block;
+  }
+
+  .header {
+    margin-top: 0;
+  }
+
+  .header .header-left {
+    gap: 3%;
+  }
+
+  .header .header-left .backBtn img {
+    width: 10px;
+    height: 14px;
+  }
+
+  .header-right .balance {
+    min-width: unset;
+    height: 27px;
+    gap: 5px;
+  }
+
+  .header-right {
+    min-width: unset;
+    gap: 5px;
+    justify-content: flex-end;
+  }
+
+  .header-right .balance img {
+    width: 17px;
+    height: 17px;
+    object-fit: cover;
+  }
+
+  .header-right .ham-icon {
+    width: 27px;
+    height: 27px;
+    display: grid;
+    place-content: center;
+  }
+
+  .header-right .ham-icon img {
+    width: 15px;
+  }
+
+  .header-right .ham-icon img {
+    padding: 0;
+  }
+
+  .hamburger-menu {
+    position: fixed;
+    right: 20px;
+    top: 8%;
+    width: 206px;
+    height: unset;
+    min-height: 308px;
+  }
+
+  .header .header-left .gameId {
+    white-space: wrap;
+    font-size: 10px;
+  }
+}
+
+/* Header CSS End here */
+
+.popup-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-modal {
+  position: relative;
+  padding-block: 34px;
+  padding-inline: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #23263a;
+  color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 616px;
+  height: 644px;
+  overflow-y: scroll;
+}
+
+.popup-modal footer {
+  align-self: center;
+}
+
+.popup-modal::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.history-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-inline: 5%;
+  color: #fff;
+}
+
+.history-table .header {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.history-data {
+  background: #1c1f32;
+  padding-block: 1%;
+  padding-inline: 2%;
+  border: 2px solid #585858;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.history-data .gameid {
+  margin-bottom: 2%;
+  text-align: justify;
+}
+
+.history-data .gameid,
+.history-data .data {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.history-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-content .data {
+  font-size: 15px;
+  text-align: center;
+}
+
+.popup-modal h2 {
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  width: 131px;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.close-btn:hover {
+  background: #f0f0f0;
+}
+
+.popup-modal-overlay:hover {
+  cursor: pointer;
+}
+
+/* How to play  */
+.how-to-play {
+  background-color: #1c1f32;
+  border: 1px solid #3c4057;
+  border-radius: 4px;
+  padding-bottom: 3%;
+  padding-inline: 3%;
+}
+
+.how-to-play .title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 2%;
+}
+
+.how-to-play .content {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 400;
+  padding-inline: 5%;
+}
+
+.statistics {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #1c1f32;
+  padding: 3%;
+  align-content: center;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.statistics .left,
+.statistics .right {
+  width: 48%;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 10px;
+  align-items: center;
+}
+
+.statistics .right,
+.statistics .left {
+  text-align: center;
+}
+
+.statistics .right .heading,
+.statistics .left .heading {
+  margin-bottom: 10px;
+}
+
+.statistics .center {
+  width: 2%;
+  background-color: #31354c;
+  border-radius: 10px;
+}
+
+.statistics .left .profit {
+  color: #2ce532;
+}
+
+.statistics .right .profit {
+  color: #2ce532;
+}
+
+.statistics .right .loss {
+  color: #da4b6f;
+  text-align: center;
+}
+
+.limit.bet-cont {
+  background-color: #1c1f32;
+  border: 1px solid #3c4057;
+  padding-block: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.limit.bet-cont .mxbet {
+  text-align: center;
+  font-weight: 400;
+}
+
+.limit.bet-cont .mxbet span {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+button.submenu-item {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: unset;
+  color: #fff;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.page {
+  width: 325px;
+  height: 644px;
+  padding: 10px;
+  margin-top: 10%;
+  background-color: #23263a;
+  border-radius: 4px;
+  border-radius: 8px;
+  overflow-y: scroll;
+}
+
+.page.statistics {
+  height: 179px;
+  padding: 10px;
+  margin-top: 0;
+  background-color: #23263a;
+}
+
+@media screen and (max-width: 468px) {
+  .popup-modal {
+    width: 94%;
+    /* align-content: center; */
+  }
+
+  .close-btn {
+    display: none;
+  }
+
+  .statistics .left,
+  .statistics .right {
+    gap: 25px;
+  }
+
+  .page .statistics {
+    margin: 0;
+  }
+
+  .history-data .gameid,
+  .history-data .data {
+    font-size: 8px;
+  }
+
+  .history-table .heading {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .how-to-play .title {
+    text-align: left;
+    font-size: 16px;
+  }
+
+  .how-to-play .content {
+    font-size: 12px;
+    text-align: left;
+    padding-inline: unset;
+  }
+
+  .how-to-play .title {
+    margin-left: 0;
+  }
+
+  .hamburger-menu .menu-item {
+    padding: 12px;
+  }
+
+  .profile-container {
+    padding-left: 10px;
+  }
+
+  .profile-image {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  .submenu .submenu-container {
+    width: 85%;
+  }
+
+  .submenu-item {
+    padding-left: 0;
+  }
+
+  .statistics {
+    width: 100%;
+    background-color: unset;
+    border-radius: 8px;
+    padding: 0;
+  }
+
+  .history-table {
+    padding-inline: 3%;
+  }
+}
+
+/******************************************/
+
+.gameModeSelection-container {
+  min-height: 100vh;
+  background-color: #1a202c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.gameModeSelection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 64rem;
+}
+
+.gameModeSelection-card {
+  background-color: #2d3748;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.gameModeSelection-card:hover {
+  background-color: #4a5568;
+}
+
+.gameModeSelection-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.gameModeSelection-card-description {
+  color: #a0aec0;
+}
+
+.gameModeSelection-card-action {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.gameModeSelection-play-now {
+  color: #48bb78;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.gameModeSelection-play-now:hover {
+  text-decoration: underline;
+}
