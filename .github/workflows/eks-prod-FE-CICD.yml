@@ -58,7 +58,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
     run: |
      cd Mines_Frontend/
-     touch .env
+     echo "${{ secrets.FRONTEND_ENV_PROD }}" > .env
      aws_account_id=$(aws sts get-caller-identity --query Account --output text)
      region=$AWS_REGION
      repository_name=mines-frontend
