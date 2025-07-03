@@ -1,0 +1,15 @@
+version: '3'
+services:
+  nodeapp:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    external: true
+
