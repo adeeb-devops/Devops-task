@@ -1,11 +1,11 @@
-name: EKS prod Deployment for Mines BE
+name: EKS prod Deployment for BE
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'Mines_Backend/**'
+      - 'blog-app/backend/**'
 
 concurrency:
   group: prod
@@ -53,15 +53,14 @@ jobs:
   - name: Build and push Docker image to ECR
     env:
       AWS_REGION: ${{ secrets.PROD_AWS_REGION }}
-      AWS_DEFAULT_REGION: ${{ secrets.PROD_AWS_REGION }}
       AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
     run: |
-     cd Mines_Backend/
+     cd blog-app/backend/
      touch .env
      aws_account_id=$(aws sts get-caller-identity --query Account --output text)
      region=$AWS_REGION
-     repository_name=mines-backend
+     repository_name=backend
      image_tag=${GITHUB_SHA}
      docker build -t $aws_account_id.dkr.ecr.$region.amazonaws.com/$repository_name:$image_tag .
      docker push $aws_account_id.dkr.ecr.$region.amazonaws.com/$repository_name:$image_tag
@@ -89,7 +88,7 @@ jobs:
   # Pushing Backend image tag to AWS Secrets Manager
   - name: Save Image Tag to Secrets Manager
     run: |
-     repo_name=mines-backend
+     repo_name=backend
      aws secretsmanager create-secret --name $repo_name-image --secret-string ${{ github.sha }} || aws secretsmanager update-secret --secret-id $repo_name-image --secret-string ${{ github.sha }}
   
   # Set up AWS CLI and EKS credentials
@@ -108,7 +107,7 @@ jobs:
   - name: Retrieve Image Tag from Secrets Manager
     id: get_image_tag
     run: |
-      image_tag=$(aws secretsmanager get-secret-value --secret-id mines-backend-image --query 'SecretString' --output text)
+      image_tag=$(aws secretsmanager get-secret-value --secret-id backend-image --query 'SecretString' --output text)
       echo "image_tag=$image_tag" >> $GITHUB_ENV
 
   # Update the Kubernetes deployment with the latest image from ECR
@@ -118,8 +117,8 @@ jobs:
     run: |
      aws_account_id=$(aws sts get-caller-identity --query Account --output text)
      region=$AWS_REGION
-     repository_name=mines-backend
+     repository_name=backend
      image_tag=${GITHUB_SHA}
-     namespace=mines-prod
-     kubectl set image deployment/mines-backend mines-backend=$aws_account_id.dkr.ecr.$region.amazonaws.com/$repository_name:$image_tag -n $namespace
-     kubectl rollout status deployment/mines-backend -n $namespace
+     namespace=blog-app
+     kubectl set image deployment/backend backend=$aws_account_id.dkr.ecr.$region.amazonaws.com/$repository_name:$image_tag -n $namespace
+     kubectl rollout status deployment/backend -n $namespace
