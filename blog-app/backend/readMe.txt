@@ -1,6 +1,7 @@
 # Backend Setup Instructions
 
 ## 1. Prerequisites
+
 - Node.js and npm installed
 - PostgreSQL installed and running
 
