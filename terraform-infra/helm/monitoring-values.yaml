@@ -1,0 +1,87 @@
+loki:
+  enabled: true
+  auth_enabled: true
+  persistence:
+    enabled: true
+    storageClassName: gp2
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "200m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+  gateway:
+    enabled: true
+    ingress:
+      enabled: false
+    basicAuth:
+      enabled: true
+      username: 'staging'
+      password: '0cE1uhDBL06v'
+promtail:
+  enabled: true
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
+  config:
+    logLevel: info
+    serverPort: 3101
+    clients:
+      - url: http://monitoring-loki.monitoring:3100/loki/api/v1/push
+
+grafana:
+  enabled: true
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "200m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  adminUser: admin
+  adminPassword: admin
+  persistence:
+    enabled: true
+    storageClassName: gp2
+    size: 8Gi
+  ingress:
+    enabled: false
+
+prometheus:
+  enabled: true
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "1"
+  persistence:
+    enabled: true
+    storageClassName: gp2
+    size: 32Gi
+  scrape_configs:
+    - job_name: "kubernetes-pods"
+      kubernetes_sd_configs:
+        - role: pod
+      relabel_configs:
+        - source_labels: [__meta_kubernetes_namespace]
+          regex: "kube-.*"
+          action: drop
+        - action: keep
+          regex: .+
+
+alertmanager:
+  enabled: true
+  persistence:
+    enabled: true
+    storageClassName: gp2   
+    size: 2Gi
