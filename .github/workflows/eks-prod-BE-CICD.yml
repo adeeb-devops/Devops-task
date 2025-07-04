@@ -56,7 +56,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
     run: |
-     cd Devops-task/blog-app/backend/
+     cd blog-app/backend
      touch .env
      aws_account_id=$(aws sts get-caller-identity --query Account --output text)
      region=$AWS_REGION
