@@ -56,7 +56,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
     run: |
-     cd blog-app/backend/
+     cd Devops-task/blog-app/backend/
      touch .env
      aws_account_id=$(aws sts get-caller-identity --query Account --output text)
      region=$AWS_REGION
@@ -119,6 +119,6 @@ jobs:
      region=$AWS_REGION
      repository_name=backend
      image_tag=${GITHUB_SHA}
-     namespace=blog-app
-     kubectl set image deployment/backend backend=$aws_account_id.dkr.ecr.$region.amazonaws.com/$repository_name:$image_tag -n $namespace
-     kubectl rollout status deployment/backend -n $namespace
+     namespace=blog-prod
+     kubectl set image deployment/blog-backend blog-backend=$aws_account_id.dkr.ecr.$region.amazonaws.com/$repository_name:$image_tag -n $namespace
+     kubectl rollout status deployment/blog-backend -n $namespace
