@@ -32,7 +32,7 @@ jobs:
           script: |
             set -e
             docker system prune -a -f
-            cd blog-app/backend/
+            cd Devops-task/blog-app/backend/
             git pull || { echo "Failed to fetch from the repository"; exit 1; }
             git checkout origin/${{ env.branch }}
             git switch -C ${{ env.branch }}
