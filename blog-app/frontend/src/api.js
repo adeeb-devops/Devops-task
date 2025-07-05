@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://13.204.17.70/api',
+  baseURL: 'http://ae1202105293140e7878d65abd0f8dba-1718198716.ap-south-1.elb.amazonaws.com/api',
 });
 
 export const getPosts = () => API.get('/posts');
