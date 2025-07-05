@@ -17,7 +17,7 @@ resource "kubernetes_config_map" "blog_backend_env" {
   }
 
   data = {
-    DATABASE_URL = "postgres://postgres:qgAdminProd1234@db.cjc04cu0y569.ap-south-1.rds.amazonaws.com:5432/db"
+    DATABASE_URL = "postgres://postgres:qgAdminProd1234@db.cjc04cu0y569.ap-south-1.rds.amazonaws.com:5432/prod-db"
     PORT         = "5000"
     JWT_SECRET   = "secret_key"
   }
